@@ -4,10 +4,6 @@ import Localized from '../components/Localized.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import { education, honors, papers, projects, skills } from '../data/content';
 
-const publicationGroups = [
-  { zh: '已接收论文', en: 'Accepted publications', items: papers.filter(p => p.status === 'accepted') },
-  { zh: '在审论文与研究手稿', en: 'Preprints & manuscripts', items: papers.filter(p => p.status !== 'accepted') },
-];
 const educationGroups = [
   { zh: '教育背景', en: 'Education', items: [education[1], education[3]] },
   { zh: '科研实习', en: 'Research appointments', items: [education[0], education[2]] },
@@ -140,19 +136,15 @@ const uavPlatforms = ['01', '02', '03', '04'].map((label) => ({
           index="01"
           zh="论文与研究手稿"
           en="Publications & Manuscripts"
-          introZh="已接收论文与在审、准备中的手稿分列。† 表示共同第一作者。"
-          introEn="Accepted work is listed separately from submissions and work in preparation. † denotes equal contribution."
+          introZh="† 表示共同第一作者。"
+          introEn="† denotes equal contribution."
         />
-        <div class="publication-groups">
-        {publicationGroups.map(group => (
-        <div class="publication-group">
-        <h3 class="list-label"><Localized zh={group.zh} en={group.en} /><span>{String(group.items.length).padStart(2, '0')}</span></h3>
         <div class="paper-list">
-          {group.items.map((paper, index) => (
+          {papers.map((paper, index) => (
             <article class="paper-item">
               <span class="paper-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
               <div class="paper-main">
-                <h4>{paper.arxiv ? <a href={paper.arxiv} target="_blank" rel="noopener noreferrer">{paper.title}</a> : paper.title}</h4>
+                <h3>{paper.arxiv ? <a href={paper.arxiv} target="_blank" rel="noopener noreferrer">{paper.title}</a> : paper.title}</h3>
                 <p class="paper-authors">
                   {paper.authors.split('Gai, W.')[0]}<strong>Gai, W.</strong>{paper.authors.split('Gai, W.')[1]}
                 </p>
@@ -181,9 +173,6 @@ const uavPlatforms = ['01', '02', '03', '04'].map((label) => ({
               </div>
             </article>
           ))}
-        </div>
-        </div>
-        ))}
         </div>
       </div>
     </section>

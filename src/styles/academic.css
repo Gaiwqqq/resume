@@ -28,8 +28,7 @@
   color: var(--ink-faint);
   font: 12px ui-monospace, monospace;
 }
-.publication-group + .publication-group { margin-top: 38px; }
-.paper-main h4 {
+.paper-main h3 {
   margin: 0;
   color: var(--navy-strong);
   font-family: var(--font-serif);
@@ -37,7 +36,7 @@
   font-weight: 600;
   line-height: 1.45;
 }
-.paper-main h4 a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.paper-main h3 a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .paper-meta .author-contribution {
   margin-top: 12px;
   color: var(--navy-strong);
@@ -183,7 +182,7 @@
   .paper-item { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .paper-number { display: none; }
   .paper-meta { grid-column: 1; }
-  .paper-main h4 { font-size: 20px; }
+  .paper-main h3 { font-size: 20px; }
   .skill-item { grid-template-columns: 1fr; }
   .profile-summary p { font-size: 15px; }
   .section-title-row h2 { font-size: 29px; }
@@ -215,9 +214,8 @@
   .paper-authors, .paper-summary, .paper-result { font-size: 9pt; line-height: 1.5; }
   .paper-meta p { font-size: 8pt; }
   .paper-meta .author-contribution { margin-top: 2mm; }
-  .paper-main h4 { font-size: 12pt; }
+  .paper-main h3 { font-size: 12pt; }
   .paper-status { font-size: 8pt; padding: 1px 4px; }
   .education-groups { gap: 6mm; }
-  .publication-group + .publication-group { margin-top: 6mm; }
   .list-label { font-size: 10pt; }
 }
