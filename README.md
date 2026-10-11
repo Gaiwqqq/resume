@@ -57,7 +57,7 @@ SITE_URL=https://example.github.io BASE_PATH=/resume/ npm run preview
 - `src/data/content.ts`：教育、论文、项目、荣誉、技能的中英双语内容。论文按简历及 `papers` 数组顺序展示，不按录用状态分组；`status` 显示各篇论文的状态，`contribution` 标注个人作者贡献。
 - `src/pages/index.astro`：个人简介、研究演示和交互。首次访问默认英文，语言选择保存在浏览器本地。
 - `src/styles/academic.css`：新版学术排版；`global.css` 保留媒体播放器、基础布局与打印规则。
-- `public/cv/Weiqi_Gai_CV_EN.pdf` 与 `Weiqi_Gai_CV_ZH.pdf`：复制自现有英文、中文简历 PDF。更新简历后手动替换对应文件；当前 PDF 中的网站地址仍是原网站地址，待 GitHub 地址确定后可在 LaTeX 源文件中更新并重新导出。
+- `public/cv/Weiqi_Gai_CV_EN.pdf` 与 `Weiqi_Gai_CV_ZH.pdf`：复制自现有英文、中文简历 PDF。两份 PDF 已从更新后的 LaTeX 源文件重新编译，网页链接为 `https://gaiwqqq.github.io/resume/`。英文论文顺序与简历源文件一致，SwiftGuide 位于 Efficient Autonomous UAV 之前。后续更新 PDF 后，同步更新 `src/pages/index.astro` 中简历链接的版本参数，避免浏览器显示缓存副本。
 - `public/media/`：从原站复制的优化后媒体，约 38 MB。不依赖服务器或转码步骤，且保留 LeRobot 四个指定视频及 2×2 同步播放。
 
 网页研究事实与状态沿用现有简历资料，未自行宣称新增录用或科研成果。论文统一展示，顺序与简历一致：OSET、NavDreamer、SwiftGuide、Grounding Human Interventions、Efficient Autonomous UAV；不展示影响因子与国内评级标签。正文、论文标题、作者贡献和个人承担的工作优先于视频展示。
