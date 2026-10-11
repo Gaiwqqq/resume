@@ -60,7 +60,7 @@ SITE_URL=https://example.github.io BASE_PATH=/resume/ npm run preview
 - `public/cv/Weiqi_Gai_CV_EN.pdf` 与 `Weiqi_Gai_CV_ZH.pdf`：复制自现有英文、中文简历 PDF。两份 PDF 已从更新后的 LaTeX 源文件重新编译，网页链接为 `https://gaiwqqq.github.io/resume/`。英文论文顺序与简历源文件一致，SwiftGuide 位于 Efficient Autonomous UAV 之前。后续更新 PDF 后，同步更新 `src/pages/index.astro` 中简历链接的版本参数，避免浏览器显示缓存副本。
 - `public/media/`：从原站复制的优化后媒体，约 38 MB。不依赖服务器或转码步骤，且保留 LeRobot 四个指定视频及 2×2 同步播放。
 
-网页研究事实与状态沿用现有简历资料，未自行宣称新增录用或科研成果。论文统一展示，顺序与简历一致：OSET、NavDreamer、SwiftGuide、Grounding Human Interventions、Efficient Autonomous UAV；不展示影响因子与国内评级标签。正文、论文标题、作者贡献和个人承担的工作优先于视频展示。
+网页研究事实与状态沿用现有简历资料，未自行宣称新增录用或科研成果。论文统一展示，顺序与简历一致：OSET、NavDreamer、Grounding Human Interventions、SwiftGuide、Efficient Autonomous UAV；不展示影响因子与国内评级标签。正文、论文标题、作者贡献和个人承担的工作优先于视频展示。
 
 ## 校验
 

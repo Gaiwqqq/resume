@@ -72,19 +72,6 @@ export const papers: Paper[] = [
   },
   {
     number: '03',
-    status: 'preparation',
-    title: 'SwiftGuide: Observation-Preserving Hierarchical Multimodal Semantic Mapping for User-Aligned Embodied Navigation Agents',
-    authors: 'Huang, Z., Gai, W., Zhou, X., Wu, Y., Gao, F. & Lyu, X.',
-    venue: 'Manuscript · 2026 · In Preparation',
-    tags: ['Multimodal', 'Navigation'],
-    summary: {
-      zh: '以带位姿的原始 RGB 观测构建三层智能体分层记忆，结合 VLM 完成多模态检索与用户偏好记忆，并规划安全返回路径。',
-      en: 'A three-level agent memory preserves posed RGB observations for multimodal retrieval, user preference memory, and safe return navigation.',
-    },
-    result: { zh: '描述查询 Hit@5 达 60.8%，267 个可达目标的导航成功率达 84.6%。', en: '60.8% Hit@5 for descriptive queries and 84.6% navigation success over 267 reachable targets.' },
-  },
-  {
-    number: '04',
     status: 'review',
     title: 'Grounding Human Interventions via Anchored Corrective-Measure Estimation',
     authors: 'Cui, X., Zhu, M., Gai, W., Wu, Y., Zhou, X., Gao, F., Wang, B., Zhou, W. & Li, H.',
@@ -95,6 +82,19 @@ export const papers: Paper[] = [
       en: 'Paired expert and policy actions ground corrective weights from human interventions, reusing reliable supervision across similar states to improve safe autonomy.',
     },
     result: { zh: '相较 PPL 平均成功率提升 34.3 个百分点，专家监督减少 25.3%。', en: 'Average success improves by 34.3 percentage points over PPL while expert supervision drops by 25.3%.' },
+  },
+  {
+    number: '04',
+    status: 'preparation',
+    title: 'SwiftGuide: Observation-Preserving Hierarchical Multimodal Semantic Mapping for User-Aligned Embodied Navigation Agents',
+    authors: 'Huang, Z., Gai, W., Zhou, X., Wu, Y., Gao, F. & Lyu, X.',
+    venue: 'Manuscript · 2026 · In Preparation',
+    tags: ['Multimodal', 'Navigation'],
+    summary: {
+      zh: '以带位姿的原始 RGB 观测构建三层智能体分层记忆，结合 VLM 完成多模态检索与用户偏好记忆，并规划安全返回路径。',
+      en: 'A three-level agent memory preserves posed RGB observations for multimodal retrieval, user preference memory, and safe return navigation.',
+    },
+    result: { zh: '描述查询 Hit@5 达 60.8%，267 个可达目标的导航成功率达 84.6%。', en: '60.8% Hit@5 for descriptive queries and 84.6% navigation success over 267 reachable targets.' },
   },
   {
     number: '05',
