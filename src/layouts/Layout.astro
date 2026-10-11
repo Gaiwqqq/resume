@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+import '../styles/academic.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonicalUrl = Astro.site ? new URL(`${base}/`, Astro.site).toString() : undefined;
+const socialImageUrl = Astro.site ? new URL(`${base}/media/oset-overview.webp`, Astro.site).toString() : undefined;
+---
+
+<!doctype html>
+<html lang="en" data-lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="author" content="Weiqi Gai" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={socialImageUrl} />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+    <title>{title}</title>
+    <script is:inline>
+      try {
+        if (localStorage.getItem('weiqi-resume-language') === 'zh') {
+          document.documentElement.dataset.lang = 'zh';
+          document.documentElement.lang = 'zh-CN';
+        }
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳转至主要内容 / Skip to content</a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,21 @@
+---
+import Localized from './Localized.astro';
+
+interface Props {
+  index: string;
+  zh: string;
+  en: string;
+  introZh?: string;
+  introEn?: string;
+}
+
+const { index, zh, en, introZh, introEn } = Astro.props;
+---
+
+<header class="section-heading">
+  <div class="section-kicker"><span>{index}</span><span aria-hidden="true"></span></div>
+  <div class="section-title-row">
+    <h2><Localized zh={zh} en={en} /></h2>
+    {introZh && introEn && <p><Localized zh={introZh} en={introEn} /></p>}
+  </div>
+</header>

@@ -1,0 +1,20 @@
+{
+  "name": "weiqi-gai-resume",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build && node scripts/check-build.mjs",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "0.9.6",
+    "astro": "5.16.11",
+    "typescript": "5.9.2"
+  },
+  "overrides": {
+    "undici": "7.16.0"
+  }
+}

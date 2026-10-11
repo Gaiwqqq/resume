@@ -1,0 +1,686 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Localized from '../components/Localized.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { education, honors, papers, projects, skills } from '../data/content';
+
+const publicationGroups = [
+  { zh: '已接收论文', en: 'Accepted publications', items: papers.filter(p => p.status === 'accepted') },
+  { zh: '在审论文与研究手稿', en: 'Preprints & manuscripts', items: papers.filter(p => p.status !== 'accepted') },
+];
+const educationGroups = [
+  { zh: '教育背景', en: 'Education', items: [education[1], education[3]] },
+  { zh: '科研实习', en: 'Research appointments', items: [education[0], education[2]] },
+];
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const media = (file: string) => `${base}/media/${file}`;
+const lerobotSources = ['000000', '000001', '000006', '000008'];
+const episodes = lerobotSources.map((source, index) => ({
+  label: String(index + 1).padStart(2, '0'),
+  src: media(`lerobot-episode-${source}.mp4?v=20260907`),
+  poster: media(`lerobot-episode-${source}.webp?v=20260907`),
+}));
+const uavPlatforms = ['01', '02', '03', '04'].map((label) => ({
+  label,
+  src: media(`uav-platform-${label}.webp`),
+}));
+---
+
+<Layout
+  title="Weiqi Gai | Robotics & Embodied Intelligence"
+  description="Weiqi Gai, master’s student at Beihang University. Research in robot motion planning, semantic navigation, and embodied intelligence. Publications, research projects, and academic CV."
+>
+  <header class="site-header" data-site-header>
+    <div class="header-shell">
+      <a
+        class="wordmark"
+        href="#top"
+        aria-label="Weiqi Gai, back to top"
+        data-aria-zh="盖巍奇，返回顶部"
+        data-aria-en="Weiqi Gai, back to top"
+      >
+        <span class="wordmark-mark" aria-hidden="true">WG</span>
+        <span class="wordmark-name">WEIQI GAI</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Page navigation" data-aria-zh="页面导航" data-aria-en="Page navigation">
+        <a href="#publications"><Localized zh="论文" en="Publications" /></a>
+        <a href="#education"><Localized zh="教育" en="Education" /></a>
+        <a href="#research"><Localized zh="研究工作" en="Research" /></a>
+        <a href="#experience"><Localized zh="项目经历" en="Experience" /></a>
+      </nav>
+      <div class="header-actions" role="group" aria-label="Language selection" data-aria-zh="语言选择" data-aria-en="Language selection">
+        <button type="button" class="lang-button" data-set-lang="zh" aria-pressed="false">中</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" class="lang-button" data-set-lang="en" aria-pressed="true">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="profile-hero section-shell" id="top">
+      <div class="profile-intro">
+        <p class="document-label">ROBOTICS &amp; EMBODIED INTELLIGENCE</p>
+        <h1>
+          <span class="lang-copy lang-zh">盖巍奇</span>
+          <span class="lang-copy lang-en" lang="en">Weiqi Gai</span>
+          <small><Localized zh="Weiqi Gai" en="盖巍奇" /></small>
+        </h1>
+        <p class="profile-role">
+          <Localized
+            zh="北京航空航天大学 · 硕士研究生 · 智能无人机方向"
+            en="Beihang University · Master's Student · Intelligent UAVs"
+          />
+        </p>
+        <div class="profile-summary">
+          <span class="summary-label"><Localized zh="研究概述" en="Research Profile" /></span>
+          <p><Localized zh="研究机器人如何在未知环境中感知、推理与导航。以运动规划和自主探索为基础，探索语义导航、视觉–语言–动作模型与世界模型，并在真实机器人上构建和验证方法。长期关注机器人通用导航、具身决策与任务泛化。" en="I study how robots perceive, reason, and navigate in unfamiliar environments. My work connects motion planning and autonomous exploration with semantic navigation, vision-language-action models, and world models. I build and evaluate these methods on real robots, with a long-term interest in general-purpose navigation and embodied decision-making." /></p>
+        </div>
+        <div class="hero-actions">
+          <a class="hero-email" href="mailto:gaiwq@buaa.edu.cn">gaiwq@buaa.edu.cn</a>
+          <a class="cv-link" href={`${base}/cv/Weiqi_Gai_CV_EN.pdf`} target="_blank" rel="noopener noreferrer" aria-label="Open English curriculum vitae PDF in a new tab" data-aria-zh="在新标签页打开英文简历 PDF" data-aria-en="Open English curriculum vitae PDF in a new tab"><Localized zh="英文简历" en="Curriculum vitae" /><span aria-hidden="true"> ↗</span><small>PDF</small></a>
+          <a class="text-link cv-secondary" href={`${base}/cv/Weiqi_Gai_CV_ZH.pdf`} target="_blank" rel="noopener noreferrer" aria-label="Open Chinese curriculum vitae PDF in a new tab" data-aria-zh="在新标签页打开中文简历 PDF" data-aria-en="Open Chinese curriculum vitae PDF in a new tab"><Localized zh="中文简历" en="中文 CV" /></a>
+        </div>
+      </div>
+
+      <aside class="profile-aside" aria-label="Profile details" data-aria-zh="基本信息" data-aria-en="Profile details">
+        <dl class="profile-facts">
+          <div>
+            <dt><Localized zh="邮箱" en="Email" /></dt>
+            <dd><a href="mailto:gaiwq@buaa.edu.cn">gaiwq@buaa.edu.cn</a></dd>
+          </div>
+          <div>
+            <dt><Localized zh="学历" en="Education" /></dt>
+            <dd><Localized zh="硕士在读" en="M.Eng. candidate" /></dd>
+          </div>
+          <div>
+            <dt><Localized zh="预计毕业" en="Graduation" /></dt>
+            <dd><Localized zh="2027 年 6 月" en="June 2027" /></dd>
+          </div>
+          <div>
+            <dt><Localized zh="英语" en="English" /></dt>
+            <dd>CET-4/6 · IELTS 6.5</dd>
+          </div>
+          <div>
+            <dt><Localized zh="所在地" en="Location" /></dt>
+            <dd><Localized zh="中国 · 北京" en="Beijing, China" /></dd>
+          </div>
+        </dl>
+
+        <div class="research-path" role="group" aria-label="Research interests" data-aria-zh="研究方向" data-aria-en="Research interests">
+          <p class="aside-label"><Localized zh="研究方向" en="Research Interests" /></p>
+          <ol>
+            <li>
+              <span>01</span>
+              <div><strong><Localized zh="运动规划" en="Motion Planning" /></strong><small><Localized zh="自主探索 · 避障 · 轨迹优化" en="Exploration · Avoidance · Trajectory optimization" /></small></div>
+            </li>
+            <li>
+              <span>02</span>
+              <div><strong><Localized zh="语义导航" en="Semantic Navigation" /></strong><small><Localized zh="场景图 · 开放词汇感知 · 目标搜索" en="Scene graphs · Open vocabulary · Goal search" /></small></div>
+            </li>
+            <li>
+              <span>03</span>
+              <div><strong><Localized zh="具身智能" en="Embodied AI" /></strong><small><Localized zh="VLA · 世界模型 · 实机部署" en="VLA · World models · Real-robot deployment" /></small></div>
+            </li>
+          </ol>
+        </div>
+      </aside>
+    </section>
+
+    <nav class="mobile-section-nav section-shell" aria-label="Section navigation" data-aria-zh="章节导航" data-aria-en="Section navigation">
+      <a href="#publications"><Localized zh="论文" en="Publications" /></a>
+      <a href="#education"><Localized zh="教育" en="Education" /></a>
+      <a href="#research"><Localized zh="研究" en="Research" /></a>
+      <a href="#experience"><Localized zh="项目" en="Experience" /></a>
+    </nav>
+
+    <section class="page-section publication-section" id="publications">
+      <div class="section-shell">
+        <SectionHeading
+          index="01"
+          zh="论文与研究手稿"
+          en="Publications & Manuscripts"
+          introZh="已接收论文与在审、准备中的手稿分列。† 表示共同第一作者。"
+          introEn="Accepted work is listed separately from submissions and work in preparation. † denotes equal contribution."
+        />
+        <div class="publication-groups">
+        {publicationGroups.map(group => (
+        <div class="publication-group">
+        <h3 class="list-label"><Localized zh={group.zh} en={group.en} /><span>{String(group.items.length).padStart(2, '0')}</span></h3>
+        <div class="paper-list">
+          {group.items.map((paper, index) => (
+            <article class="paper-item">
+              <span class="paper-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <div class="paper-main">
+                <h4>{paper.arxiv ? <a href={paper.arxiv} target="_blank" rel="noopener noreferrer">{paper.title}</a> : paper.title}</h4>
+                <p class="paper-authors">
+                  {paper.authors.split('Gai, W.')[0]}<strong>Gai, W.</strong>{paper.authors.split('Gai, W.')[1]}
+                </p>
+                <p class="paper-summary"><Localized zh={paper.summary.zh} en={paper.summary.en} /></p>
+                <p class="paper-result"><Localized zh={paper.result.zh} en={paper.result.en} /></p>
+              </div>
+              <div class="paper-meta">
+                <p>{paper.venue}</p>
+                {paper.contribution && <p class="author-contribution"><Localized zh={paper.contribution.zh} en={paper.contribution.en} /></p>}
+                <span class={`paper-status paper-status--${paper.status}`}><Localized zh={paper.status === 'accepted' ? '已接收' : paper.status === 'review' ? '在审' : '准备中'} en={paper.status === 'accepted' ? 'Accepted' : paper.status === 'review' ? 'Under review' : 'In preparation'} /></span>
+                {paper.arxiv && (
+                  <a
+                    class="arxiv-link"
+                    href={paper.arxiv}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View paper on arXiv (latest version)"
+                    data-aria-zh="在 arXiv 查看论文（最新版本）"
+                    data-aria-en="View paper on arXiv (latest version)"
+                  >
+                    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 15 15 5m0 0H7m8 0v8" /></svg>
+                    <span>arXiv</span>
+                    <span class="arxiv-id">{paper.arxiv.split('/').pop()}</span>
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+        </div>
+        ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section section-shell" id="education">
+      <SectionHeading
+        index="02"
+        zh="教育与实习经历"
+        en="Education & Internships"
+        introZh="围绕智能无人机、自主探索与机器人导航持续开展研究和工程实践。"
+        introEn="Research and engineering experience in intelligent UAVs, autonomous exploration, and robot navigation."
+      />
+      <div class="education-groups">
+      {educationGroups.map(group => (
+      <div>
+      <h3 class="list-label"><Localized zh={group.zh} en={group.en} /></h3>
+      <div class="education-list">
+        {group.items.map((item) => (
+          <article class="education-item">
+            <time>{item.period}</time>
+            <div>
+              <h4><Localized zh={item.title.zh} en={item.title.en} /></h4>
+              <p><Localized zh={item.meta.zh} en={item.meta.en} /></p>
+            </div>
+          </article>
+        ))}
+      </div>
+      </div>
+      ))}
+      </div>
+    </section>
+
+    <section class="page-section section-shell" id="research">
+      <SectionHeading
+        index="03"
+        zh="代表性研究工作"
+        en="Selected Research"
+        introZh="从全机载无人机探索到视频世界模型与实机操作学习，关注能在真实系统中闭环运行的方法。"
+        introEn="From fully onboard UAV exploration to video world models and real-robot manipulation, I focus on methods that close the loop in physical systems."
+      />
+
+      <article class="research-feature">
+        <div class="research-copy">
+          <div class="project-meta"><span>2025—2026</span><span>FIRST AUTHOR · PROJECT LEAD</span></div>
+          <h3>OSET</h3>
+          <p class="project-subtitle"><Localized zh="全机载无人机语义探索系统" en="Fully onboard semantic exploration for UAVs" /></p>
+          <p><Localized zh="将可通行场景图、开放词汇感知、机载大模型区域决策与局部探索规划整合为完整闭环。全部感知、推理和规划均在 Orin NX 16GB 上运行。" en="A unified pipeline combines a traversability-aware scene graph, open-vocabulary perception, onboard language-model reasoning, and local exploration planning. All perception, reasoning, and planning run on an Orin NX 16GB." /></p>
+          <dl class="result-strip">
+            <div><dt>+54%</dt><dd><Localized zh="成功率相对提升" en="Relative success-rate gain" /></dd></div>
+            <div><dt>+65%</dt><dd><Localized zh="SPL 相对提升" en="Relative SPL gain" /></dd></div>
+          </dl>
+        </div>
+        <figure class="media-panel media-panel--wide">
+          <img class="print-poster" src={media('oset-demo.webp')} alt="" aria-hidden="true" />
+          <video controls playsinline preload="none" poster={media('oset-demo.webp')} aria-labelledby="oset-caption">
+            <source src={media('oset-demo.mp4')} type="video/mp4" />
+          </video>
+          <figcaption id="oset-caption"><Localized zh="真实无人机全机载实验" en="Fully onboard real-world UAV experiment" /></figcaption>
+        </figure>
+      </article>
+
+      <div class="research-pair">
+        <article class="research-card">
+          <div class="project-meta"><span>RA-L 2026</span><span>ACCEPTED</span></div>
+          <h3>NavDreamer</h3>
+          <p class="project-subtitle"><Localized zh="以视频模型实现零样本三维导航" en="Video models as zero-shot 3D navigators" /></p>
+          <p><Localized zh="生成多条未来导航视频，由 VLM 按安全性和任务完成度选优，再恢复可执行三维航点。真实任务整体成功率约 85%。" en="Future navigation videos are ranked by a VLM for safety and completion, then converted into executable 3D waypoints, reaching about 85% success on real tasks." /></p>
+          <figure class="media-panel">
+            <img class="print-poster" src={media('navdreamer-demo.webp')} alt="" aria-hidden="true" />
+            <video controls playsinline preload="none" poster={media('navdreamer-demo.webp')} aria-labelledby="navdreamer-caption">
+              <source src={media('navdreamer-demo.mp4')} type="video/mp4" />
+            </video>
+            <figcaption id="navdreamer-caption"><Localized zh="真实室内外导航演示" en="Real-world indoor and outdoor navigation" /></figcaption>
+          </figure>
+        </article>
+
+        <article class="research-card">
+          <div class="project-meta"><span>AAAI 2027</span><span>UNDER REVIEW</span></div>
+          <h3>Grounding Human Interventions</h3>
+          <p class="project-subtitle"><Localized zh="从少量人工纠正中学习安全行为" en="Learning safer behavior from sparse human correction" /></p>
+          <p><Localized zh="将接管时的专家动作与原策略动作配对，在相似状态间复用可靠监督；平均成功率提升 34.3 个百分点。" en="Expert and policy actions are paired during interventions, transferring reliable supervision across similar states and improving average success by 34.3 points." /></p>
+          <div class="grounding-media-grid">
+            <figure class="media-panel">
+              <img class="print-poster" src={media('grounding-train-ground.webp')} alt="" aria-hidden="true" />
+              <video controls playsinline preload="none" poster={media('grounding-train-ground.webp')} aria-label="Ground vehicle training" data-aria-zh="地面机器人训练" data-aria-en="Ground vehicle training">
+                <source src={media('grounding-train-ground.mp4')} type="video/mp4" />
+              </video>
+              <figcaption><span>TRAIN</span><span>GROUND VEHICLE</span></figcaption>
+            </figure>
+            <figure class="media-panel">
+              <img class="print-poster" src={media('grounding-train-quadcopter.webp')} alt="" aria-hidden="true" />
+              <video controls playsinline preload="none" poster={media('grounding-train-quadcopter.webp')} aria-label="Quadrotor training" data-aria-zh="四旋翼训练" data-aria-en="Quadrotor training">
+                <source src={media('grounding-train-quadcopter.mp4')} type="video/mp4" />
+              </video>
+              <figcaption><span>TRAIN</span><span>QUADROTOR</span></figcaption>
+            </figure>
+            <figure class="media-panel">
+              <img class="print-poster" src={media('grounding-ground.webp')} alt="" aria-hidden="true" />
+              <video controls playsinline preload="none" poster={media('grounding-ground.webp')} aria-label="Ground vehicle deployment" data-aria-zh="地面机器人部署" data-aria-en="Ground vehicle deployment">
+                <source src={media('grounding-ground.mp4')} type="video/mp4" />
+              </video>
+              <figcaption><span>DEPLOY</span><span>GROUND VEHICLE</span></figcaption>
+            </figure>
+            <figure class="media-panel">
+              <img class="print-poster" src={media('grounding-quadcopter.webp')} alt="" aria-hidden="true" />
+              <video controls playsinline preload="none" poster={media('grounding-quadcopter.webp')} aria-label="Quadrotor deployment" data-aria-zh="四旋翼部署" data-aria-en="Quadrotor deployment">
+                <source src={media('grounding-quadcopter.mp4')} type="video/mp4" />
+              </video>
+              <figcaption><span>DEPLOY</span><span>QUADROTOR</span></figcaption>
+            </figure>
+          </div>
+        </article>
+      </div>
+
+      <article class="lerobot-panel" id="lerobot">
+        <header class="lerobot-header">
+          <div>
+            <div class="project-meta"><span>2026</span><span>REAL-ROBOT REPRODUCTION</span></div>
+            <h3>LeRobot Manipulation</h3>
+            <p><Localized zh="基于 200 条实机示教数据完成 XT60 航空插头抓取，复现 ACT、Diffusion Policy、π₀ 与 π₀.₅。下方展示其中 4 次实机实验，采用田字形排版，支持同步播放与单路放大。" en="XT60 connector grasping with 200 real-robot demonstrations, reproducing ACT, Diffusion Policy, π₀, and π₀.₅. Four real-robot trials are arranged in a 2×2 grid with synchronized playback and individual enlargement." /></p>
+          </div>
+          <div class="experiment-label"><span class="experiment-count">4</span><Localized zh="次实机实验" en="robot trials" /></div>
+        </header>
+
+        <div class="video-wall" data-sync-player data-playing="false">
+          <div class="video-grid">
+            {episodes.map((episode) => (
+              <figure class="experiment-video">
+                <img class="print-poster" src={episode.poster} alt="" aria-hidden="true" />
+                <video
+                  muted
+                  playsinline
+                  preload="none"
+                  poster={episode.poster}
+                  data-sync-video
+                  aria-label={`LeRobot 实验 ${episode.label}`}
+                  data-aria-zh={`LeRobot 实验 ${episode.label}`}
+                  data-aria-en={`LeRobot trial ${episode.label}`}
+                >
+                  <source src={episode.src} type="video/mp4" />
+                </video>
+                <figcaption><span>TRIAL</span><strong>{episode.label}</strong></figcaption>
+                <button
+                  type="button"
+                  class="expand-video"
+                  data-expand-video
+                  data-video-src={episode.src}
+                  data-video-poster={episode.poster}
+                  aria-label={`放大 LeRobot 实验 ${episode.label}`}
+                  data-aria-zh={`放大 LeRobot 实验 ${episode.label}`}
+                  data-aria-en={`Enlarge LeRobot trial ${episode.label}`}
+                >
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 3H3v4.5M12.5 3H17v4.5M7.5 17H3v-4.5M12.5 17H17v-4.5" /></svg>
+                </button>
+              </figure>
+            ))}
+          </div>
+
+          <div class="video-controls">
+            <button type="button" class="play-all" data-play-all aria-label="Play all four videos in sync" data-aria-zh="同步播放全部四段视频" data-aria-en="Play all four videos in sync">
+              <svg class="play-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="m7 5 8 5-8 5V5Z" /></svg>
+              <svg class="pause-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 5h3v10H6V5Zm5 0h3v10h-3V5Z" /></svg>
+              <span class="play-label"><Localized zh="同步播放" en="Play all" /></span>
+              <span class="pause-label"><Localized zh="暂停全部" en="Pause all" /></span>
+            </button>
+            <div class="timeline">
+              <span data-current-time>00:00</span>
+              <input type="range" min="0" max="1000" value="0" data-video-progress aria-label="Playback position for all four videos" data-aria-zh="四段视频播放进度" data-aria-en="Playback position for all four videos" />
+              <span data-total-time>00:15</span>
+            </div>
+            <button type="button" class="replay-all" data-replay-all aria-label="Replay all four videos" data-aria-zh="重播全部四段视频" data-aria-en="Replay all four videos">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 6.5V3m0 3.5H8M5 6a6 6 0 1 1-1 6.7" /></svg>
+              <Localized zh="重播" en="Replay" />
+            </button>
+          </div>
+          <div class="playback-message" data-playback-error role="status" hidden>
+            <p><Localized zh="当前浏览器无法播放视频。可以下载实验录像后使用本地播放器观看。" en="Video playback is unavailable in this browser. Download a trial to watch it in a local video player." /></p>
+            <div class="trial-downloads">
+              {episodes.map(episode => <a href={episode.src} download><Localized zh={`下载实验 ${episode.label}`} en={`Download trial ${episode.label}`} /></a>)}
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="uav-platform-panel" id="uav-platform">
+        <header class="uav-platform-header">
+          <div>
+            <div class="project-meta"><span>HARDWARE / SYSTEM DESIGN</span><span>INDEPENDENT WORK</span></div>
+            <h3><Localized zh="无人机平台设计与系统集成" en="UAV Platform Design & System Integration" /></h3>
+          </div>
+          <p class="ownership-statement">
+            <Localized
+              zh="以下无人机平台均由我独立设计完成，体现了从平台构型、软硬件集成到实机实现与调试的完整工程能力。"
+              en="All UAV platforms shown below were independently designed and completed by me, demonstrating end-to-end engineering from platform configuration and hardware-software integration to physical implementation and testing."
+            />
+          </p>
+        </header>
+
+        <div class="dji-platform-feature">
+          <figure class="uav-feature-figure">
+            <img
+              src={media('uav-dji-platform.webp')}
+              alt="基于 DJI M350 二次开发的无人机平台 / UAV platform developed from the DJI M350"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              <span>DJI M350</span>
+              <strong><Localized zh="二次开发平台" en="Secondary development platform" /></strong>
+            </figcaption>
+          </figure>
+
+          <div class="dji-system-card">
+            <span class="detail-label">DJI SDK + ROS</span>
+            <h4><Localized zh="完整外围系统与 ROS 集成" en="Complete Peripheral System with ROS Integration" /></h4>
+            <p>
+              <Localized
+                zh="DJI 平台基于 DJI M350 进行二次开发。我依据其 SDK 独立设计并实现了完整的外围系统，并将该系统与 ROS 结合，形成面向算法开发与实机验证的一体化无人机平台。"
+                en="The DJI platform is a secondary development based on the DJI M350. Using its SDK, I independently designed and implemented the complete peripheral system and integrated it with ROS, creating a unified UAV platform for algorithm development and real-world validation."
+              />
+            </p>
+            <figure class="uav-system-diagram">
+              <img
+                src={media('uav-dji-system.svg')}
+                alt="DJI M350 外围系统与 ROS 集成示意图 / DJI M350 peripheral system and ROS integration diagram"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption><Localized zh="DJI 平台二次开发系统架构" en="DJI platform development architecture" /></figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="uav-platform-gallery" aria-label="Independently designed UAV platforms" data-aria-zh="独立设计的无人机平台" data-aria-en="Independently designed UAV platforms">
+          {uavPlatforms.map((platform) => (
+            <figure class="uav-platform-photo">
+              <img
+                src={platform.src}
+                alt={`盖巍奇独立设计的无人机平台 ${platform.label} / UAV platform ${platform.label} independently designed by Weiqi Gai`}
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>
+                <span>PLATFORM {platform.label}</span>
+                <strong><Localized zh="独立设计与实现" en="Independent design & implementation" /></strong>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </article>
+    </section>
+
+    <section class="page-section experience-section" id="experience">
+      <div class="section-shell">
+        <SectionHeading
+          index="04"
+          zh="项目经历"
+          en="Project Experience"
+          introZh="将研究问题落到可运行系统：从算法、训练和软件架构，到无人机硬件、通信与实机调试。"
+          introEn="Turning research questions into working systems, spanning algorithms, training, software architecture, UAV hardware, networking, and field testing."
+        />
+        <div class="project-list">
+          {projects.map((project, index) => (
+            <article class="project-item">
+              <span class="project-index">{String(index + 1).padStart(2, '0')}</span>
+              <div class="project-body">
+                <h3><Localized zh={project.title.zh} en={project.title.en} /></h3>
+                <p class="project-role"><Localized zh={project.role.zh} en={project.role.en} /></p>
+                <p class="project-description"><Localized zh={project.description.zh} en={project.description.en} /></p>
+              </div>
+              <time>{project.period}</time>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section section-shell closing-section" id="profile">
+      <SectionHeading index="05" zh="能力与荣誉" en="Capabilities & Honors" />
+      <div class="closing-grid">
+        <div>
+          <h3 class="subsection-label"><Localized zh="能力图谱" en="Capabilities" /></h3>
+          <div class="skills-list">
+            {skills.map((skill) => (
+              <article class="skill-item">
+                <h4><Localized zh={skill.title.zh} en={skill.title.en} /></h4>
+                <p><Localized zh={skill.text.zh} en={skill.text.en} /></p>
+              </article>
+            ))}
+          </div>
+        </div>
+        <div class="honors-column">
+          <h3 class="subsection-label"><Localized zh="荣誉奖项" en="Honors" /></h3>
+          <ol>
+            {honors.map((honor) => <li><Localized zh={honor.zh} en={honor.en} /></li>)}
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <div class="section-shell contact-inner">
+        <p class="document-label">RESEARCH CONTACT</p>
+        <h2><Localized zh="期待与您交流" en="Open to research conversations" /></h2>
+        <p><Localized zh="欢迎交流机器人导航、具身智能与真实系统部署。" en="Open to conversations on robot navigation, embodied intelligence, and real-world deployment." /></p>
+        <a href="mailto:gaiwq@buaa.edu.cn">gaiwq@buaa.edu.cn <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 15 15 5m0 0H7m8 0v8" /></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell">
+    <span>WEIQI GAI · <Localized zh="学术简历" en="Academic profile" /></span>
+    <a href="#top"><Localized zh="返回顶部" en="Back to top" /> ↑</a>
+  </footer>
+
+  <dialog class="video-dialog" data-video-dialog aria-label="Expanded experiment video" data-aria-zh="放大播放实验视频" data-aria-en="Expanded experiment video">
+    <div class="dialog-header">
+      <span>LEROBOT / EXPERIMENT VIEW</span>
+      <button type="button" data-close-dialog aria-label="Close video" data-aria-zh="关闭视频" data-aria-en="Close video">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" /></svg>
+      </button>
+    </div>
+    <video controls playsinline preload="none" data-dialog-video></video>
+  </dialog>
+
+  <script>
+    const languageButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-set-lang]'));
+    const languageStorageKey = 'weiqi-resume-language';
+
+    function setLanguage(language: 'zh' | 'en') {
+      document.documentElement.dataset.lang = language;
+      document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
+      languageButtons.forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.setLang === language));
+      });
+      document.querySelectorAll<HTMLElement>('[data-aria-zh]').forEach((element) => {
+        const label = language === 'en' ? element.dataset.ariaEn : element.dataset.ariaZh;
+        if (label) element.setAttribute('aria-label', label);
+      });
+      document.title = language === 'zh'
+        ? '盖巍奇 · 机器人导航与具身智能'
+        : 'Weiqi Gai | Robotics & Embodied Intelligence';
+      try {
+        localStorage.setItem(languageStorageKey, language);
+      } catch {}
+      window.dispatchEvent(new CustomEvent('resume-language-change'));
+    }
+
+    let storedLanguage: string | null = null;
+    try {
+      storedLanguage = localStorage.getItem(languageStorageKey);
+    } catch {}
+    setLanguage(storedLanguage === 'zh' ? 'zh' : 'en');
+    languageButtons.forEach((button) => {
+      button.addEventListener('click', () => setLanguage(button.dataset.setLang === 'en' ? 'en' : 'zh'));
+    });
+
+    const header = document.querySelector<HTMLElement>('[data-site-header]');
+    const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 24);
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+
+    const player = document.querySelector<HTMLElement>('[data-sync-player]');
+    if (player) {
+      const videos = Array.from(player.querySelectorAll<HTMLVideoElement>('[data-sync-video]'));
+      const playButton = player.querySelector<HTMLButtonElement>('[data-play-all]');
+      const replayButton = player.querySelector<HTMLButtonElement>('[data-replay-all]');
+      const progress = player.querySelector<HTMLInputElement>('[data-video-progress]');
+      const currentTime = player.querySelector<HTMLElement>('[data-current-time]');
+      const totalTime = player.querySelector<HTMLElement>('[data-total-time]');
+      const playbackError = player.querySelector<HTMLElement>('[data-playback-error]');
+      let playing = false;
+      let frame = 0;
+      let playRequest = 0;
+
+      const formatTime = (value: number) => {
+        const minutes = Math.floor(value / 60);
+        const seconds = Math.floor(value % 60);
+        return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      };
+      const setPlaying = (value: boolean) => {
+        playing = value;
+        player.dataset.playing = String(value);
+        const english = document.documentElement.dataset.lang === 'en';
+        playButton?.setAttribute('aria-label', value
+          ? (english ? 'Pause all four videos' : '暂停全部四段视频')
+          : (english ? 'Play all four videos in sync' : '同步播放全部四段视频'));
+      };
+
+      const updateTimeline = () => {
+        const leader = videos[0];
+        if (!leader || !progress || !currentTime) return;
+        const duration = Number.isFinite(leader.duration) ? leader.duration : 15.2;
+        progress.value = String(Math.round((leader.currentTime / duration) * 1000));
+        currentTime.textContent = formatTime(leader.currentTime);
+
+        if (playing) {
+          videos.slice(1).forEach((video) => {
+            if (!video.ended && Math.abs(video.currentTime - leader.currentTime) > 0.14) {
+              video.currentTime = leader.currentTime;
+            }
+          });
+          if (leader.ended || leader.currentTime >= duration - 0.05) {
+            setPlaying(false);
+          } else {
+            frame = requestAnimationFrame(updateTimeline);
+          }
+        }
+      };
+
+      const playAll = async () => {
+        if (playbackError) playbackError.hidden = true;
+        if (videos.some(video => !video.canPlayType('video/mp4; codecs="avc1.42E01E"'))) {
+          if (playbackError) playbackError.hidden = false;
+          return;
+        }
+        const request = ++playRequest;
+        const leader = videos[0];
+        if (leader && leader.ended) videos.forEach((video) => { video.currentTime = 0; });
+        setPlaying(true);
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(updateTimeline);
+        const results = await Promise.allSettled(videos.map((video) => video.play()));
+        if (request !== playRequest) return;
+        if (results.some((result) => result.status === 'rejected')) {
+          pauseAll();
+          if (playbackError) playbackError.hidden = false;
+        }
+      };
+
+      const pauseAll = () => {
+        playRequest += 1;
+        videos.forEach((video) => video.pause());
+        setPlaying(false);
+        cancelAnimationFrame(frame);
+        updateTimeline();
+      };
+
+      videos.forEach(video => {
+        const reportError = () => {
+          pauseAll();
+          if (playbackError) playbackError.hidden = false;
+        };
+        video.addEventListener('error', reportError);
+        video.querySelector('source')?.addEventListener('error', reportError);
+      });
+
+      playButton?.addEventListener('click', () => playing ? pauseAll() : void playAll());
+      replayButton?.addEventListener('click', () => {
+        videos.forEach((video) => { video.currentTime = 0; });
+        void playAll();
+      });
+      progress?.addEventListener('input', () => {
+        const target = (Number(progress.value) / 1000) * (videos[0]?.duration || 15.2);
+        videos.forEach((video) => { video.currentTime = target; });
+        updateTimeline();
+      });
+      videos[0]?.addEventListener('loadedmetadata', () => {
+        updateTimeline();
+        if (totalTime && videos[0]) totalTime.textContent = formatTime(videos[0].duration);
+      }, { once: true });
+      window.addEventListener('resume-language-change', () => setPlaying(playing));
+
+      const observer = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting && playing) pauseAll();
+      }, { threshold: 0.05 });
+      observer.observe(player);
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden && playing) pauseAll();
+      });
+
+      const dialog = document.querySelector<HTMLDialogElement>('[data-video-dialog]');
+      const dialogVideo = dialog?.querySelector<HTMLVideoElement>('[data-dialog-video]');
+      const closeDialog = () => {
+        dialogVideo?.pause();
+        if (dialogVideo) {
+          dialogVideo.removeAttribute('src');
+          dialogVideo.removeAttribute('poster');
+          dialogVideo.load();
+        }
+        dialog?.close();
+      };
+
+      player.querySelectorAll<HTMLButtonElement>('[data-expand-video]').forEach((button) => {
+        button.addEventListener('click', () => {
+          pauseAll();
+          if (!dialog || !dialogVideo) return;
+          dialogVideo.src = button.dataset.videoSrc || '';
+          dialogVideo.poster = button.dataset.videoPoster || '';
+          dialog.showModal();
+        });
+      });
+      dialog?.querySelector<HTMLButtonElement>('[data-close-dialog]')?.addEventListener('click', closeDialog);
+      dialog?.addEventListener('click', (event) => {
+        if (event.target === dialog) closeDialog();
+      });
+      dialog?.addEventListener('close', () => dialogVideo?.pause());
+    }
+  </script>
+</Layout>

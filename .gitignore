@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+
+# Local files and credentials do not belong in the public resume repository.
+.env
+.env.*
+!.env.example
+AGENTS.md
+**/AGENTS.md
+.DS_Store
+*.log
+_qa/
+*.zip
