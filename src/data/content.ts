@@ -12,7 +12,7 @@ export interface Paper {
   summary: LocalizedText;
   result: LocalizedText;
   arxiv?: string;
-  status: 'accepted' | 'review' | 'preparation';
+  status: 'accepted' | 'review' | 'preparation' | 'preprint';
   contribution?: LocalizedText;
 }
 
@@ -108,6 +108,57 @@ export const papers: Paper[] = [
       en: 'Random-seed frontier generation, anisotropic Gaussian viewpoint sampling, and active-perception trajectory optimization enable efficient mapping with limited-FOV UAVs.',
     },
     result: { zh: '探索时间降低 17%-27%，飞行路径缩短 10%-17%。', en: 'Exploration time drops by 17%-27%, with flight paths shortened by 10%-17%.' },
+  },
+  {
+    number: '06',
+    status: 'preprint',
+    arxiv: 'https://arxiv.org/abs/2609.39670',
+    title: 'From Local Whole-Body VLA Behaviors to Scene-Scale Aerial Manipulation',
+    authors: 'Guo, W., Jin, R., Jin, H., Xu, X., Liu, R., Zhao, H., Wang, Y., Gai, W., Cao, K. & Xie, L.',
+    venue: 'arXiv · 2026',
+    tags: ['VLA', 'Aerial Manipulation'],
+    summary: {
+      zh: '结合合成全身示教、基于实测执行进度的动作对齐与关系场景图，将局部 VLA 技能组合为跨作业点的空中操作任务。',
+      en: 'Synthetic whole-body demonstrations, measured-progress action alignment, and a relational scene graph compose local VLA skills into multi-site aerial manipulation.',
+    },
+    result: {
+      zh: '在提供正确目标及可行交接条件的仿真中，局部技能成功率为 65%；完整系统完成 21/50 次多作业点任务，并在真实空中操作平台上验证。',
+      en: 'Local skills achieve 65% simulated success with oracle targets and feasible handoffs; the full system completes 21/50 simulated multi-site missions, with additional physical-platform validation.',
+    },
+  },
+  {
+    number: '07',
+    status: 'preprint',
+    arxiv: 'https://arxiv.org/abs/2605.19600',
+    title: 'FlyMirage: A Fully Automated Generation Pipeline for Diverse and Scalable UAV Flight Data via Generative World Model',
+    authors: 'Li, J., Huang, X., Gai, W., Wang, Z., He, Q., Wang, Y., Zhu, M., Liu, Z., Gao, F., Zhou, X., Wu, Y. & Ding, Z.',
+    venue: 'arXiv · 2026',
+    tags: ['World Models', 'Aerial VLN'],
+    summary: {
+      zh: '由 LLM 设计多样环境，生成式世界模型构建逼真的 3DGS 场景，并自动完成探索、语义采集与满足动力学约束的无人机轨迹生成。',
+      en: 'LLM-designed environments and a generative world model produce realistic 3DGS scenes, with automated exploration, semantic collection, and dynamically feasible UAV trajectories.',
+    },
+    result: {
+      zh: '构建可扩展的空中视觉语言导航数据集；使用该数据微调 π₀，在仿真与真实未见环境中验证导航能力提升。',
+      en: 'A scalable aerial VLN dataset improves π₀ navigation after fine-tuning, evaluated in unseen simulated and real-world environments.',
+    },
+  },
+  {
+    number: '08',
+    status: 'preprint',
+    arxiv: 'https://arxiv.org/abs/2605.07496',
+    title: 'PathPainter: Transferring the Generalization Ability of Image Generation Models to Embodied Navigation',
+    authors: 'Wang, Y., Tian, Y., Huang, X., Gai, W., Zhu, M., Zhou, X., Wu, Y. & Gao, F.',
+    venue: 'arXiv · 2026',
+    tags: ['Image Generation', 'Navigation'],
+    summary: {
+      zh: '利用图像生成模型从自然语言和鸟瞰图中解析目标、生成可通行区域，并通过跨视角定位将里程计与鸟瞰地图对齐，缓解累积漂移。',
+      en: 'An image generation model grounds language goals and predicts traversability from bird’s-eye views; cross-view localization aligns odometry with the map to mitigate drift.',
+    },
+    result: {
+      zh: '在真实无人机上结合常规局部运动规划器，完成 160 米室外长距离导航。',
+      en: 'Validated on a real UAV completing a 160-meter outdoor navigation task with a conventional local motion planner.',
+    },
   },
 ];
 

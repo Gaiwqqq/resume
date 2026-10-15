@@ -154,7 +154,7 @@ const uavPlatforms = ['01', '02', '03', '04'].map((label) => ({
               <div class="paper-meta">
                 <p>{paper.venue}</p>
                 {paper.contribution && <p class="author-contribution"><Localized zh={paper.contribution.zh} en={paper.contribution.en} /></p>}
-                <span class={`paper-status paper-status--${paper.status}`}><Localized zh={paper.status === 'accepted' ? '已接收' : paper.status === 'review' ? '在审' : '准备中'} en={paper.status === 'accepted' ? 'Accepted' : paper.status === 'review' ? 'Under review' : 'In preparation'} /></span>
+                <span class={`paper-status paper-status--${paper.status}`}><Localized zh={paper.status === 'accepted' ? '已接收' : paper.status === 'review' ? '在审' : paper.status === 'preprint' ? '预印本' : '准备中'} en={paper.status === 'accepted' ? 'Accepted' : paper.status === 'review' ? 'Under review' : paper.status === 'preprint' ? 'Preprint' : 'In preparation'} /></span>
                 {paper.arxiv && (
                   <a
                     class="arxiv-link"
