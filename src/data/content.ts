@@ -85,32 +85,6 @@ export const papers: Paper[] = [
   },
   {
     number: '04',
-    status: 'preparation',
-    title: 'SwiftGuide: Observation-Preserving Hierarchical Multimodal Semantic Mapping for User-Aligned Embodied Navigation Agents',
-    authors: 'Huang, Z., Gai, W., Zhou, X., Wu, Y., Gao, F. & Lyu, X.',
-    venue: 'Manuscript · 2026 · In Preparation',
-    tags: ['Multimodal', 'Navigation'],
-    summary: {
-      zh: '以带位姿的原始 RGB 观测构建三层智能体分层记忆，结合 VLM 完成多模态检索与用户偏好记忆，并规划安全返回路径。',
-      en: 'A three-level agent memory preserves posed RGB observations for multimodal retrieval, user preference memory, and safe return navigation.',
-    },
-    result: { zh: '描述查询 Hit@5 达 60.8%，267 个可达目标的导航成功率达 84.6%。', en: '60.8% Hit@5 for descriptive queries and 84.6% navigation success over 267 reachable targets.' },
-  },
-  {
-    number: '05',
-    status: 'accepted',
-    title: 'Efficient Autonomous UAV Exploration Framework With Limited FOV Sensors for IoT Applications',
-    authors: 'Wang, Z., Meng, Z., Tian, T., Gai, W., Zhao, G., et al.',
-    venue: 'IEEE Internet of Things Journal · 2025 · Accepted',
-    tags: ['IoT-J'],
-    summary: {
-      zh: '通过随机种子边界生成、各向异性高斯视点采样和主动感知轨迹优化，让有限视场无人机在未知三维环境中高效建图。',
-      en: 'Random-seed frontier generation, anisotropic Gaussian viewpoint sampling, and active-perception trajectory optimization enable efficient mapping with limited-FOV UAVs.',
-    },
-    result: { zh: '探索时间降低 17%-27%，飞行路径缩短 10%-17%。', en: 'Exploration time drops by 17%-27%, with flight paths shortened by 10%-17%.' },
-  },
-  {
-    number: '06',
     status: 'preprint',
     arxiv: 'https://arxiv.org/abs/2609.39670',
     title: 'From Local Whole-Body VLA Behaviors to Scene-Scale Aerial Manipulation',
@@ -127,7 +101,7 @@ export const papers: Paper[] = [
     },
   },
   {
-    number: '07',
+    number: '05',
     status: 'preprint',
     arxiv: 'https://arxiv.org/abs/2605.19600',
     title: 'FlyMirage: A Fully Automated Generation Pipeline for Diverse and Scalable UAV Flight Data via Generative World Model',
@@ -144,7 +118,7 @@ export const papers: Paper[] = [
     },
   },
   {
-    number: '08',
+    number: '06',
     status: 'preprint',
     arxiv: 'https://arxiv.org/abs/2605.07496',
     title: 'PathPainter: Transferring the Generalization Ability of Image Generation Models to Embodied Navigation',
@@ -159,6 +133,32 @@ export const papers: Paper[] = [
       zh: '在真实无人机上结合常规局部运动规划器，完成 160 米室外长距离导航。',
       en: 'Validated on a real UAV completing a 160-meter outdoor navigation task with a conventional local motion planner.',
     },
+  },
+  {
+    number: '07',
+    status: 'preparation',
+    title: 'SwiftGuide: Observation-Preserving Hierarchical Multimodal Semantic Mapping for User-Aligned Embodied Navigation Agents',
+    authors: 'Huang, Z., Gai, W., Zhou, X., Wu, Y., Gao, F. & Lyu, X.',
+    venue: 'Manuscript · 2026 · In Preparation',
+    tags: ['Multimodal', 'Navigation'],
+    summary: {
+      zh: '以带位姿的原始 RGB 观测构建三层智能体分层记忆，结合 VLM 完成多模态检索与用户偏好记忆，并规划安全返回路径。',
+      en: 'A three-level agent memory preserves posed RGB observations for multimodal retrieval, user preference memory, and safe return navigation.',
+    },
+    result: { zh: '描述查询 Hit@5 达 60.8%，267 个可达目标的导航成功率达 84.6%。', en: '60.8% Hit@5 for descriptive queries and 84.6% navigation success over 267 reachable targets.' },
+  },
+  {
+    number: '08',
+    status: 'accepted',
+    title: 'Efficient Autonomous UAV Exploration Framework With Limited FOV Sensors for IoT Applications',
+    authors: 'Wang, Z., Meng, Z., Tian, T., Gai, W., Zhao, G., et al.',
+    venue: 'IEEE Internet of Things Journal · 2025 · Accepted',
+    tags: ['IoT-J'],
+    summary: {
+      zh: '通过随机种子边界生成、各向异性高斯视点采样和主动感知轨迹优化，让有限视场无人机在未知三维环境中高效建图。',
+      en: 'Random-seed frontier generation, anisotropic Gaussian viewpoint sampling, and active-perception trajectory optimization enable efficient mapping with limited-FOV UAVs.',
+    },
+    result: { zh: '探索时间降低 17%-27%，飞行路径缩短 10%-17%。', en: 'Exploration time drops by 17%-27%, with flight paths shortened by 10%-17%.' },
   },
 ];
 
